@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #ededed;
+  --bg-color: #f5f8ff;
+  --bg-color-1: #dbf5ff;
+  --main-color: #19c0ff;
+  --text-color: #121216;
+  --text-secondary-color: #767689;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.hero-gradient {
+  background: linear-gradient(to bottom, var(--bg-color), var(--bg-color-1));
+}
