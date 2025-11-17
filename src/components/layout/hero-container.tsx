@@ -1,4 +1,4 @@
-import HeroSearchForm from "@/component/sections/hero-search-form";
+import HeroSearchForm from "@/components/sections/hero-search-form";
 
 const HeroContainer = () => {
   return (

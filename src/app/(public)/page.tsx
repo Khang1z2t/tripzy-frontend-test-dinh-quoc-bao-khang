@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HeroContainer from "@/component/layout/hero-container";
+import HeroContainer from "@/components/layout/hero-container";
 
 export default function Home() {
   return <HeroContainer />;
