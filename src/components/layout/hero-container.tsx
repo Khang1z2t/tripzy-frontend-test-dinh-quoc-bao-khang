@@ -20,7 +20,7 @@ const HeroContainer = () => {
         </div>
 
         {/* Form Tìm kiếm (Sử dụng margin âm để kéo lên) */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 -mb-32">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 -mb-32">
           <HeroSearchForm />
         </div>
       </div>
