@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+-----
 
-First, run the development server:
+# 🚀 tripzy-frontend-test-dinh-quoc-bao-khang
+
+This is the solution for the Tripzy Frontend test, focusing on building a high-fidelity, highly interactive, and responsive travel search interface (Hero Section) with optimized performance and modern architectural best practices.
+
+## 🌟 Application Demo
+
+
+* **Vercel Demo Link:** https://tripzy-frontend-test-dinh-quoc-bao.vercel.app/
+
+-----
+
+## 🛠️ Project Setup and Running Instructions
+
+To install and run this project in your local development environment, please follow these steps:
+
+### 1\. Installation
+
+Use your preferred package manager to install the dependencies:
 
 ```bash
+# If using pnpm (Recommended)
+pnpm install
+
+# If using npm
+npm install
+
+# If using yarn
+yarn install
+```
+
+### 2\. Run Development Server
+
+Start the development server with the following command:
+
+```bash
+pnpm dev
+# or
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be accessible at: **`http://localhost:3000`**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3\. Build and Start Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To create an optimized production build and serve it:
 
-## Learn More
+```bash
+# Build the project
+pnpm build
 
-To learn more about Next.js, take a look at the following resources:
+# Start the production server
+pnpm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-----
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏗️ Architecture, Libraries, and Key Technical Decisions
 
-## Deploy on Vercel
+### 1\. Key Libraries
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Library | Rationale for Choice |
+| :--- | :--- |
+| **Next.js** | Provides robust routing, SSR/SSG capabilities, and built-in performance optimizations (Image, Font). |
+| **Tailwind CSS** | Chosen for rapid development, utility-first styling, and highly effective responsive design implementation. |
+| **shadcn/ui** | Provides accessible, high-quality, and fully customizable UI components (Tabs, Popover, Input) that are styled purely with Tailwind, eliminating CSS conflicts. |
+| **Lucide React** | A clean, modern icon library. |
+| **date-fns** | Used for reliable date object handling and formatting. |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2\. Key Technical Decisions
+
+* **Frontend UI/UX:** Achieved the required multi-column layout and alignment by using **Flexbox utilities** (`flex`, `flex-row`, `flex-grow-[x]`) combined with **responsive classes** (`md:`, `w-full`) to maintain the complex form ratio (2:2:1) on desktop while collapsing to full width on mobile.
+* **Form Logic & State Safety:** All form updates are centralized through a **TypeScript generic type** (`FormChangeHandler`), ensuring that the value passed to update the state is **type-safe** and always matches the type defined for that specific field.
+* **State Management:** Form state (`formData`) is managed via a **single object** and synchronized with the displaying component's internal state (`searchValue`) using the React **`useEffect`** hook, particularly crucial for the location swap functionality.
+* **Autocomplete Implementation:** Used the **`shadcn/ui` Command/Popover** components to build the location search feature, utilizing array filtering on the client-side for immediate results.
+* **Routing:** Utilized **`useRouter`** and **`URLSearchParams`** to cleanly serialize the complex `formData` object into a URL query string, demonstrating readiness for API submission.
