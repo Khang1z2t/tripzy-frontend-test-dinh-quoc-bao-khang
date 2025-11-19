@@ -4,6 +4,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { BusFormData } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 const parseValue = (key: keyof BusFormData, value: string): any => {
   switch (key) {
     case "departDate":
