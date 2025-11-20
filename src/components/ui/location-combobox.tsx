@@ -1,7 +1,7 @@
 "use client";
 
 import { Bus, Check } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Command,
   CommandEmpty,
@@ -27,28 +27,33 @@ const LocationCombobox = ({
 }: LocationComboboxProps) => {
   const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState(value);
+  const searchValueRef = useRef(searchValue);
 
+  // wrapper to keep state and ref in sync
+  const setSearchValueAndRef = (v: string) => {
+    searchValueRef.current = v;
+    setSearchValue(v);
+  };
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (value !== searchValue) {
-      // 1. Tìm object location dựa trên giá trị đã lưu (English Name)
-      const selectedLocation = locations.find(
-        (loc) => loc.english_name === value,
-      );
+    if (value === searchValueRef.current) return;
 
-      let newSearchValue = value;
-
-      if (selectedLocation) {
-        // 2. Định dạng giá trị hiển thị MỚI.
-        newSearchValue = selectedLocation.english_name;
-      } else {
-        // Nếu không tìm thấy, có thể đó là chuỗi gõ dở hoặc giá trị rỗng
-        newSearchValue = value;
-      }
-
-      // 3. Cập nhật state nội bộ
-      setSearchValue(newSearchValue);
+    if (!value) {
+      setSearchValueAndRef("");
+      return;
     }
-  }, [value, locations, searchValue]);
+
+    const selectedLocation = locations.find(
+      (loc) => loc.english_name === value,
+    );
+
+    if (selectedLocation) {
+      setSearchValueAndRef(selectedLocation.english_name);
+    } else {
+      setSearchValueAndRef(value);
+    }
+  }, [value, locations]);
 
   const filteredLocations = useMemo(() => {
     if (!searchValue) return locations;
